@@ -20,7 +20,7 @@ export default function FilterCountry() {
   };
 
   return (
-    <div className="flex-[0.3] space-y-6">
+    <div className="flex-[0.25] space-y-6">
       <div className="space-y-2 text-[#6C727F]">
         <label className="text-xs font-semibold">Sort by</label>
         <DropDown />
