@@ -10,24 +10,30 @@ export default function Countries({ data, setSelectedCountry }) {
         <p className="flex-[0.2]">Area (Km)</p>
         <p className="flex-[0.2]">Region</p>
       </div>
-      <div className="h-full overflow-y-scroll scrollbar mb-3">
-        {data?.slice(0, 10).map((item) => (
-          <div
-            className="flex items-center gap-2 p-2 rounded-md my-4 text-[#D2D5DA] cursor-pointer hover:bg-slate-600"
-            onClick={() => setSelectedCountry(item)}
-          >
-            <img
-              src={item?.flags?.png}
-              alt="flag icon"
-              className="flex-[0.1]  w-10 overflow-hidden rounded-md"
-            />
-            <p className="flex-[0.3]">{item?.name?.common}</p>
-            <p className="flex-[0.2]">{item?.population}</p>
-            <p className="flex-[0.2]">{item?.area}</p>
-            <p className="flex-[0.2]">{item?.region}</p>
-          </div>
-        ))}
-      </div>
+      {data.length > 0 ? (
+        <div className="h-full overflow-y-scroll scrollbar mb-3">
+          {data?.slice(0, 10).map((item) => (
+            <div
+              className="flex items-center gap-2 p-2 rounded-md my-4 text-[#D2D5DA] cursor-pointer hover:bg-slate-600"
+              onClick={() => setSelectedCountry(item)}
+            >
+              <img
+                src={item?.flags?.png}
+                alt="flag icon"
+                className="flex-[0.1]  w-10 overflow-hidden rounded-md"
+              />
+              <p className="flex-[0.3]">{item?.name?.common}</p>
+              <p className="flex-[0.2]">{item?.population}</p>
+              <p className="flex-[0.2]">{item?.area}</p>
+              <p className="flex-[0.2]">{item?.region}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-[#D2D5DA] font-bold mt-8">
+          Fetching Countries...
+        </p>
+      )}
     </div>
   );
 }

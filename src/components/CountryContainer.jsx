@@ -12,8 +12,10 @@ export default function CountryContainer() {
         <img src={logo} alt="logo" />
       </div>
       {selectedCountry ? (
-        <div className="md:mx-40 bg-[#1C1D1F] border border-slate-500 rounded-lg py-6 px-8">
-          <Country country={selectedCountry} />
+        <div className="flex justify-center">
+          <div className="xs:w-[85%] sm:w-[80%] md:w-[50%] md:mx-40 bg-[#1C1D1F] border border-slate-500 rounded-lg py-6 px-8">
+            <Country country={selectedCountry} goBack={setSelectedCountry} />
+          </div>
         </div>
       ) : (
         <div className="h-[100vh] md:mx-40 bg-[#1C1D1F] border border-slate-500 rounded-lg py-6 px-8 overflow-hidden">
