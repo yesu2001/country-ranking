@@ -1,9 +1,8 @@
 import { useState } from "react";
 import down from "../assets/Expand_down.svg";
 
-export default function DropDown() {
+export default function DropDown({ category, setCategory }) {
   const [options, setOptions] = useState(["Name", "Population", "Area"]);
-  const [category, setCategory] = useState("Name");
   const [expand, setExpand] = useState(false);
 
   const toggleDropdown = () => {

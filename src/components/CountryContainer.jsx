@@ -18,7 +18,7 @@ export default function CountryContainer() {
           </div>
         </div>
       ) : (
-        <div className="h-[100vh] md:mx-40 bg-[#1C1D1F] border border-slate-500 rounded-lg py-6 px-8 overflow-hidden">
+        <div className="h-[100vh] sm:mx-5 md:mx-20 bg-[#1C1D1F] border border-slate-500 rounded-lg py-6 px-8 overflow-hidden">
           <DisplayCountry setSelectedCountry={setSelectedCountry} />
         </div>
       )}

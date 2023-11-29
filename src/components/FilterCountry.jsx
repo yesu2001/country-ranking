@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import DropDown from "./DropDown";
 import tick from "../assets/Done_round.svg";
 
-export default function FilterCountry() {
+export default function FilterCountry({
+  status,
+  setStatus,
+  category,
+  setCategory,
+  regions,
+  setRegions,
+}) {
   const regionOptions = ["America", "Antartica", "Asia", "Africa", "Europe"];
-  const [status, setStatus] = useState("Members of the United Nations");
-  const [regions, setRegions] = useState([]);
+  const statusOptions = ["Members of the United Nations", "Independant"];
 
   const handleSelectRegions = (region) => {
     if (regions.includes(region)) {
@@ -16,14 +22,18 @@ export default function FilterCountry() {
   };
 
   const handleSelectStatus = (item) => {
-    setStatus(item);
+    if (status.includes(item)) {
+      setStatus(status.filter((selected) => selected !== item));
+    } else {
+      setStatus([...status, item]);
+    }
   };
 
   return (
     <div className="flex-[0.25] space-y-6">
       <div className="space-y-2 text-[#6C727F]">
         <label className="text-xs font-semibold">Sort by</label>
-        <DropDown />
+        <DropDown category={category} setCategory={setCategory} />
       </div>
       <div className="space-y-2">
         <label className="text-[#6C727F] text-xs font-semibold">Region</label>
@@ -44,24 +54,22 @@ export default function FilterCountry() {
       <div className="space-y-3">
         <label className="text-[#6C727F] text-xs font-semibold">Status</label>
         <div className="text-[#D2D5DA] text-sm space-y-3 ">
-          {["Members of the United Nations", "Independant"].map(
-            (item, index) => (
+          {statusOptions.map((item, index) => (
+            <div
+              key={index}
+              className="flex gap-3 items-center cursor-pointer"
+              onClick={() => handleSelectStatus(item)}
+            >
               <div
-                key={index}
-                className="flex gap-3 items-center cursor-pointer"
-                onClick={() => handleSelectStatus(item)}
+                className={`h-6 w-6 rounded-md border border-[#6C727F] flex items-center justify-center ${
+                  status.includes(item) ? "bg-[#4E80EE]" : ""
+                } `}
               >
-                <div
-                  className={`h-6 w-6 rounded-md border border-[#6C727F] flex items-center justify-center ${
-                    item === status ? "bg-[#4E80EE]" : ""
-                  } `}
-                >
-                  {item === status && <img src={tick} alt="tick" />}
-                </div>
-                <p>{item}</p>
+                {status.includes(item) && <img src={tick} alt="tick" />}
               </div>
-            )
-          )}
+              <p>{item}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
